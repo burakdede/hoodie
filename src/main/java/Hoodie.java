@@ -10,11 +10,13 @@ public class Hoodie {
 
     private final static Logger logger = LoggerFactory.getLogger(Hoodie.class.getSimpleName());
 
+    private static ReflectiveMethodParser reflectiveMethodParser;
+
     public static <T> T registerNewTarget(Class<T> clazz, String baseUrl) {
         T target;
 
-        ReflectiveMethodParser reflectiveMethodParser = new ReflectiveMethodParser(clazz);
-        ReflectiveMethodParser.parse();
+        reflectiveMethodParser = new ReflectiveMethodParser(clazz);
+        reflectiveMethodParser.parse();
 
         target = (T) Proxy.newProxyInstance(clazz.getClassLoader(),
                                         new Class[]{clazz},

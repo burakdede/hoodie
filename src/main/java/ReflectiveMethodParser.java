@@ -19,7 +19,7 @@ public class ReflectiveMethodParser {
     }
 
 
-    public static void parse() {
+    public void parse() {
 
         for (Method m : claz.getMethods()) {
             if (m.isAnnotationPresent(Request.class)) {
