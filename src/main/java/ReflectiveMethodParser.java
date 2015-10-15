@@ -22,7 +22,6 @@ public class ReflectiveMethodParser {
     public static void parse() {
 
         for (Method m : claz.getMethods()) {
-
             if (m.isAnnotationPresent(Request.class)) {
                 // parse request line
                 Request requestAnnotation = m.getAnnotation(Request.class);
@@ -48,6 +47,9 @@ public class ReflectiveMethodParser {
                 // parse return type
                 Type t = m.getReturnType();
                 methodMetadata.setReturnType(t);
+
+                // store metadata in cache for each invocation
+                ReflectiveInvocationHandler.putInCache(m, methodMetadata);
             }
         }
     }

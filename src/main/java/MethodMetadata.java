@@ -24,7 +24,6 @@ public class MethodMetadata {
         this.httpRequestType = httpRequestType;
     }
 
-
     public void addNewQueryParam(Integer index, String name) {
         queryParams.putIfAbsent(index, name);
     }
