@@ -1,0 +1,1 @@
+*Hoodie is a type safe wrapper around jersey http client for rest operations.
