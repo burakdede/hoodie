@@ -9,7 +9,6 @@ public class JerseyClient implements HttpClient {
 
     private final static Client client = ClientBuilder.newClient();
 
-
     private WebTarget addHeaders(Map<String, String> headers,
                                           WebTarget target) {
         for (Map.Entry<String, String> header : headers.entrySet()) {
@@ -19,15 +18,17 @@ public class JerseyClient implements HttpClient {
     }
 
     @Override
-    public Response head(Map<String, String> headers) {
-        WebTarget target = client.target("");
+    public Response head(Map<String, String> headers, String url) {
+        WebTarget target = client.target(url);
         target = addHeaders(headers, target);
         Response response = target.request().head();
         return response;
     }
 
     @Override
-    public Response get(Map<String, String> headers, Map<String, String> queryParams) {
+    public Response get(Map<String, String> headers,
+                        Map<String, String> queryParams,
+                        String url) {
         WebTarget target = client.target("");
         target = addHeaders(headers, target);
         for (Map.Entry param : queryParams.entrySet()) {
@@ -39,7 +40,9 @@ public class JerseyClient implements HttpClient {
     }
 
     @Override
-    public Response post(Map<String, String> headers, Entity entity) {
+    public Response post(Map<String, String> headers,
+                         Entity entity,
+                         String url) {
         WebTarget target = client.target("");
         target = addHeaders(headers, target);
         Response response = target.request().post(entity);
@@ -48,7 +51,7 @@ public class JerseyClient implements HttpClient {
     }
 
     @Override
-    public Response delete(Map<String, String> headers) {
+    public Response delete(Map<String, String> headers, String url) {
         WebTarget target = client.target("");
         target = addHeaders(headers, target);
         Response response = target.request().delete();

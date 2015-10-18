@@ -7,11 +7,11 @@ import java.util.Map;
  */
 public interface HttpClient {
 
-    public Response head(Map<String, String> headers);
+    public Response head(Map<String, String> headers, String url);
 
-    public Response get(Map<String, String> headers, Map<String, String> queryParams);
+    public Response get(Map<String, String> headers, Map<String, String> queryParams, String url);
 
-    public Response post(Map<String, String> headers, Entity entity);
+    public Response post(Map<String, String> headers, Entity entity, String url);
 
-    public Response delete(Map<String, String> headers);
+    public Response delete(Map<String, String> headers, String url);
 }
