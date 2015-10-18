@@ -1,3 +1,5 @@
+package annotation;
+
 import java.lang.annotation.*;
 
 /**
@@ -5,7 +7,7 @@ import java.lang.annotation.*;
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.PARAMETER)
-public @interface QueryParam {
+@Target(ElementType.METHOD)
+public @interface Request {
     String value();
 }

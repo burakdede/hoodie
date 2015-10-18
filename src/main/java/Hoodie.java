@@ -15,8 +15,7 @@ public class Hoodie {
     public static <T> T registerNewTarget(Class<T> clazz, String baseUrl) {
         T target;
 
-        reflectiveMethodParser = new ReflectiveMethodParser(clazz);
-        reflectiveMethodParser.parse();
+        ReflectiveMethodParser.parse(clazz);
 
         target = (T) Proxy.newProxyInstance(clazz.getClassLoader(),
                                         new Class[]{clazz},

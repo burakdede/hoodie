@@ -1,3 +1,5 @@
+import annotation.QueryParam;
+import annotation.Request;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,14 +14,7 @@ public class ReflectiveMethodParser {
 
     private final static Logger logger = LoggerFactory.getLogger(ReflectiveMethodParser.class.getSimpleName());
 
-    private static Class claz;
-
-    public ReflectiveMethodParser(Class claz) {
-        this.claz = claz;
-    }
-
-
-    public void parse() {
+    public static void parse(Class claz) {
 
         for (Method m : claz.getMethods()) {
             if (m.isAnnotationPresent(Request.class)) {
@@ -31,7 +26,7 @@ public class ReflectiveMethodParser {
 
                 MethodMetadata methodMetadata = new MethodMetadata(m, path, httpType);
 
-                // parse parameteres and annotations
+                // parse parameters and annotations
                 Annotation[][] paramAnnotations = m.getParameterAnnotations();
                 for (int i = 0; i < paramAnnotations.length; i++) {
                     Annotation[] paramAnnotation = paramAnnotations[i];

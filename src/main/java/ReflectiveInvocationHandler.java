@@ -32,7 +32,6 @@ public class ReflectiveInvocationHandler implements InvocationHandler {
         } else {
             //call proxy metho
         }
-        logger.debug("Method invoked");
         return null;
     }
 }
