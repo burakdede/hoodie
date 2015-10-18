@@ -5,4 +5,7 @@ public interface Google {
 
     @Request("GET /")
     String gethomePage();
+
+    @Request("GET /")
+    String gethomePageWithQueryParms(@QueryParam("q") String query);
 }

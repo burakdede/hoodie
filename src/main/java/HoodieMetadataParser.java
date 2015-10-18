@@ -26,7 +26,7 @@ public class HoodieMetadataParser {
     public static Map parseQueryParams(Map<Integer, String> queryParams, Object[] args) {
         Map<String, String> newQueryParams = new HashMap<>();
         for (Map.Entry<Integer, String> param : queryParams.entrySet()) {
-            newQueryParams.putIfAbsent((String) args[param.getKey()], param.getValue());
+            newQueryParams.putIfAbsent(param.getValue(), (String) args[param.getKey()]);
         }
 
         return newQueryParams;
@@ -51,10 +51,10 @@ public class HoodieMetadataParser {
                     for (int j = 0; j < paramAnnotation.length; j++) {
                         Class<? extends Annotation> annotationType = paramAnnotation[j].annotationType();
                         if (annotationType == QueryParam.class) {
-                            QueryParam queryParam = annotationType.getAnnotation(QueryParam.class);
+                            QueryParam queryParam = (QueryParam) paramAnnotation[j];
                             methodMetadata.addNewQueryParam(j, queryParam.value());
                         } else if (annotationType == Header.class) {
-                            Header header = annotationType.getAnnotation(Header.class);
+                            Header header = (Header) paramAnnotation[j];
                             methodMetadata.addNewHeader(j, header.value());
                         }
                     }

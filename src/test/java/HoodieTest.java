@@ -17,6 +17,14 @@ public class HoodieTest {
     }
 
     @Test
+    public void testQueryParam() {
+        Google google = Hoodie.registerNewTarget(Google.class, "http://www.google.com.tr");
+        String response = google.gethomePageWithQueryParms("hello");
+        assertNotNull(response);
+    }
+
+
+    @Test
     public void testMethodCache() throws NoSuchMethodException {
         Google google = Hoodie.registerNewTarget(Google.class, "http://www.google.com");
 
