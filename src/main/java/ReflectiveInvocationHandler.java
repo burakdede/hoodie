@@ -26,6 +26,12 @@ public class ReflectiveInvocationHandler implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        MethodMetadata methodMetadata = getMethodFromCache(method);
+        if (methodMetadata == null) {
+            method.invoke(this, args);
+        } else {
+            //call proxy metho
+        }
         logger.debug("Method invoked");
         return null;
     }
