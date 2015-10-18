@@ -1,3 +1,4 @@
+import annotation.Header;
 import annotation.QueryParam;
 import annotation.Request;
 import org.slf4j.Logger;
@@ -10,9 +11,9 @@ import java.lang.reflect.Type;
 /**
  * Created by burakdede on 15.10.15.
  */
-public class ReflectiveMethodParser {
+public class HoodieMetadataParser {
 
-    private final static Logger logger = LoggerFactory.getLogger(ReflectiveMethodParser.class.getSimpleName());
+    private final static Logger logger = LoggerFactory.getLogger(HoodieMetadataParser.class.getSimpleName());
 
     public static void parse(Class claz) {
 
@@ -35,6 +36,9 @@ public class ReflectiveMethodParser {
                         if (annotationType == QueryParam.class) {
                             QueryParam queryParam = annotationType.getAnnotation(QueryParam.class);
                             methodMetadata.addNewQueryParam(j, queryParam.value());
+                        } else if (annotationType == Header.class) {
+                            Header header = annotationType.getAnnotation(Header.class);
+                            methodMetadata.addNewHeader(j, header.value());
                         }
                     }
                 }
@@ -42,6 +46,9 @@ public class ReflectiveMethodParser {
                 // parse return type
                 Type t = m.getReturnType();
                 methodMetadata.setReturnType(t);
+                // parse return class
+                Class returnClass = m.getReturnType();
+                methodMetadata.setReturnClass(returnClass);
 
                 // store metadata in cache for each invocation
                 ReflectiveInvocationHandler.putInCache(m, methodMetadata);
