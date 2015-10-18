@@ -1,7 +1,6 @@
 # Hoodie
 
-###**Hoodie** is a wrapper around the Jersey Client that makes your rest api calls annotation based
-and type safe
+###**Hoodie** is a wrapper around the Jersey Client that makes your rest api calls annotation based and type safe
 
 # Documentation
 
