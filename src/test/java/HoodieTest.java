@@ -12,7 +12,8 @@ public class HoodieTest {
     @Test
     public void testInvocation() {
         Google google = Hoodie.registerNewTarget(Google.class, "http://www.google.com.tr");
-        google.gethomePage();
+        String homepage = google.gethomePage();
+        assertNotNull(homepage);
     }
 
     @Test

@@ -1,12 +1,11 @@
-import annotation.Header;
-import annotation.QueryParam;
-import annotation.Request;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by burakdede on 15.10.15.
@@ -14,6 +13,24 @@ import java.lang.reflect.Type;
 public class HoodieMetadataParser {
 
     private final static Logger logger = LoggerFactory.getLogger(HoodieMetadataParser.class.getSimpleName());
+
+    public static Map parseHeaders(Map<Integer, String> headers, Object[] args) {
+        Map<String, String> newHeaders = new HashMap<>();
+        for (Map.Entry<Integer, String> header : headers.entrySet()) {
+            newHeaders.putIfAbsent((String) args[header.getKey()], header.getValue());
+        }
+
+        return newHeaders;
+    }
+
+    public static Map parseQueryParams(Map<Integer, String> queryParams, Object[] args) {
+        Map<String, String> newQueryParams = new HashMap<>();
+        for (Map.Entry<Integer, String> param : queryParams.entrySet()) {
+            newQueryParams.putIfAbsent((String) args[param.getKey()], param.getValue());
+        }
+
+        return newQueryParams;
+    }
 
     public static void parse(Class claz) {
 

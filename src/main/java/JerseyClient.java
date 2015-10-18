@@ -1,5 +1,6 @@
 import javax.ws.rs.client.*;
 import javax.ws.rs.core.Response;
+import java.lang.reflect.Type;
 import java.util.Map;
 
 /**
@@ -26,35 +27,38 @@ public class JerseyClient implements HttpClient {
     }
 
     @Override
-    public Response get(Map<String, String> headers,
+    public <T> T get(Map<String, String> headers,
                         Map<String, String> queryParams,
-                        String url) {
-        WebTarget target = client.target("");
+                        String url,
+                        Class c) {
+        WebTarget target = client.target(url);
         target = addHeaders(headers, target);
         for (Map.Entry param : queryParams.entrySet()) {
             target.queryParam((String) param.getKey(), param.getValue());
         }
-        Response response = target.request().get();
+        T t = (T) target.request().get(c);
 
-        return response;
+        return t;
     }
 
     @Override
-    public Response post(Map<String, String> headers,
+    public <T> T post(Map<String, String> headers,
                          Entity entity,
-                         String url) {
-        WebTarget target = client.target("");
+                         String url,
+                         Class c) {
+        WebTarget target = client.target(url);
         target = addHeaders(headers, target);
-        Response response = target.request().post(entity);
+        T t = (T) target.request().post(entity, c);
 
-        return response;
+        return t;
     }
 
     @Override
-    public Response delete(Map<String, String> headers, String url) {
-        WebTarget target = client.target("");
+    public <T> T delete(Map<String, String> headers, String url, Class c) {
+        WebTarget target = client.target(url);
         target = addHeaders(headers, target);
-        Response response = target.request().delete();
-        return response;
+        T t = (T) target.request().delete(c);
+
+        return t;
     }
 }

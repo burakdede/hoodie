@@ -1,5 +1,3 @@
-import annotation.Request;
-
 /**
  * Created by burakdede on 16.10.15.
  */

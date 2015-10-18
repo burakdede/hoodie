@@ -2,6 +2,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,13 +25,28 @@ public class ReflectiveInvocationHandler implements InvocationHandler {
     }
 
 
+    private String baseUrl;
+    private HttpClient httpClient;
+
+    public ReflectiveInvocationHandler(String baseUrl) {
+        this.baseUrl = baseUrl;
+        httpClient = new JerseyClient();
+    }
+
+
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         MethodMetadata methodMetadata = getMethodFromCache(method);
-        if (methodMetadata == null) {
-            method.invoke(this, args);
-        } else {
-            //call proxy metho
+        try {
+            if (methodMetadata != null) {
+                return methodMetadata.invoke(baseUrl, httpClient, args);
+            } else {
+                // by pass these methods
+                // we do not care them let them flow
+                return method.invoke(this, args);
+            }
+        } catch (InvocationTargetException e) {
+            logger.trace("Problem while invoking method", e);
         }
         return null;
     }
