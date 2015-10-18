@@ -37,4 +37,11 @@ public class JerseyClient implements HttpClient {
 
         return response;
     }
+
+    @Override
+    public Response delete() {
+        WebTarget target = client.target("");
+        Response response = target.request().delete();
+        return response;
+    }
 }

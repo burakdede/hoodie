@@ -12,4 +12,6 @@ public interface HttpClient {
     public Response get(Map<String, String> queryParams);
 
     public Response post(Entity entity);
+
+    public Response delete();
 }
