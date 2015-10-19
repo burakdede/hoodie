@@ -8,4 +8,7 @@ public interface Google {
 
     @Request("GET /")
     String gethomePageWithQueryParms(@QueryParam("q") String query);
+
+    @Request("GET /{username}")
+    String getGithubPageForUser(@PathParam("username") String username);
 }

@@ -1,3 +1,4 @@
+import com.sun.org.apache.bcel.internal.generic.FieldGenOrMethodGen;
 import org.junit.Test;
 
 import java.lang.reflect.Method;
@@ -14,6 +15,14 @@ public class HoodieTest {
         Google google = Hoodie.registerNewTarget(Google.class, "http://www.google.com.tr");
         String homepage = google.gethomePage();
         assertNotNull(homepage);
+    }
+
+    @Test
+    public void testGithubUserPage() {
+        Google google = Hoodie.registerNewTarget(Google.class, "https://github.com");
+        String githubPage = google.getGithubPageForUser("burakdd");
+        assertNotNull(githubPage);
+
     }
 
     @Test

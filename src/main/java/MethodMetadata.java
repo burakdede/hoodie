@@ -33,7 +33,7 @@ public class MethodMetadata {
     }
 
     public void addNewPathParam(Integer integer, String name) {
-        headers.putIfAbsent(integer, name);
+        pathParams.putIfAbsent(integer, name);
     }
 
     public void addNewHeader(Integer integer, String name) {

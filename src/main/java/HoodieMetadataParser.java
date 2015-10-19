@@ -76,7 +76,7 @@ public class HoodieMetadataParser {
                             methodMetadata.addNewHeader(j, header.value());
                         } else if (annotationType == PathParam.class) {
                             PathParam pathParam = (PathParam) paramAnnotation[j];
-
+                            methodMetadata.addNewPathParam(j, pathParam.value());
                         }
                     }
                 }
