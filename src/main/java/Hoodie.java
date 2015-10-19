@@ -13,11 +13,10 @@ public class Hoodie {
 
     private static HoodieMetadataParser hoodieMetadataParser;
 
-    public static <T> T registerNewTarget(Class<T> clazz, String baseUrl, ClientConfig clientConfig) {
+    public static <T> T registerNewTarget(Class<T> clazz, String baseUrl) {
         T target;
 
         HoodieMetadataParser.parse(clazz);
-
         target = (T) Proxy.newProxyInstance(clazz.getClassLoader(),
                 new Class[]{clazz},
                 new ReflectiveInvocationHandler(baseUrl));

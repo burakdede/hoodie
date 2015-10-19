@@ -1,9 +1,12 @@
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.UnsupportedEncodingException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,6 +35,21 @@ public class HoodieMetadataParser {
         return newQueryParams;
     }
 
+    public static String replacePathParams(String path, Map<Integer, String> pathParams, Object[] args) {
+        String paramEncoded = null;
+        for (Map.Entry<Integer, String> pathParam : pathParams.entrySet()) {
+            Object paramVal = args[pathParam.getKey()];
+            try {
+                paramEncoded = URLEncoder.encode((String) paramVal, "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                logger.error("Can not encode given path param => " + paramVal);
+                e.printStackTrace();
+            }
+            path = path.replaceAll("\\{(" + pathParam.getValue() + ")\\}", paramEncoded);
+        }
+        return path;
+    }
+
     public static void parse(Class claz) {
 
         for (Method m : claz.getMethods()) {
@@ -56,6 +74,9 @@ public class HoodieMetadataParser {
                         } else if (annotationType == Header.class) {
                             Header header = (Header) paramAnnotation[j];
                             methodMetadata.addNewHeader(j, header.value());
+                        } else if (annotationType == PathParam.class) {
+                            PathParam pathParam = (PathParam) paramAnnotation[j];
+
                         }
                     }
                 }

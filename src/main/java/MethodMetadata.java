@@ -1,7 +1,5 @@
-import ch.qos.logback.classic.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.ws.rs.client.Entity;
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 import java.util.HashMap;
@@ -24,12 +22,18 @@ public class MethodMetadata {
 
     private Map<Integer, String> queryParams = new HashMap<>();
     private Map<Integer, String> headers = new HashMap<>();
+    private Map<Integer, String> pathParams = new HashMap<>();
+
     private Class returnClass;
 
     public MethodMetadata(Method m, String path, String httpRequestType) {
         this.m = m;
         this.path = path;
         this.httpRequestType = httpRequestType;
+    }
+
+    public void addNewPathParam(Integer integer, String name) {
+        headers.putIfAbsent(integer, name);
     }
 
     public void addNewHeader(Integer integer, String name) {
@@ -72,14 +76,6 @@ public class MethodMetadata {
         this.httpRequestType = httpRequestType;
     }
 
-    public Map<Integer, String> getQueryParams() {
-        return queryParams;
-    }
-
-    public void setQueryParams(Map<Integer, String> queryParams) {
-        this.queryParams = queryParams;
-    }
-
     public void setReturnClass(Class returnClass) {
         this.returnClass = returnClass;
     }
@@ -98,7 +94,7 @@ public class MethodMetadata {
                  t = httpClient.get(
                         HoodieMetadataParser.parseHeaders(headers, args),
                         HoodieMetadataParser.parseQueryParams(queryParams, args),
-                        url + path,
+                        HoodieMetadataParser.replacePathParams(url + path, pathParams, args),
                         returnClass);
                 break;
             case "post":
