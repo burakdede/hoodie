@@ -1,3 +1,5 @@
+import org.glassfish.jersey.client.ClientConfig;
+
 import javax.ws.rs.client.*;
 import javax.ws.rs.core.Response;
 import java.lang.reflect.Type;
@@ -8,7 +10,15 @@ import java.util.Map;
  */
 public class JerseyClient implements HttpClient {
 
-    private final static Client client = ClientBuilder.newClient();
+    private static Client client;
+
+    public JerseyClient() {
+        client = ClientBuilder.newClient();
+    }
+
+    public JerseyClient(ClientConfig clientConfig) {
+        client = ClientBuilder.newClient(clientConfig);
+    }
 
     private WebTarget addHeaders(Map<String, String> headers,
                                           WebTarget target) {

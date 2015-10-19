@@ -1,3 +1,4 @@
+import org.glassfish.jersey.client.ClientConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,7 +13,7 @@ public class Hoodie {
 
     private static HoodieMetadataParser hoodieMetadataParser;
 
-    public static <T> T registerNewTarget(Class<T> clazz, String baseUrl) {
+    public static <T> T registerNewTarget(Class<T> clazz, String baseUrl, ClientConfig clientConfig) {
         T target;
 
         HoodieMetadataParser.parse(clazz);

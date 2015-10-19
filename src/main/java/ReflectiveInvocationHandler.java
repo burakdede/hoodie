@@ -16,21 +16,20 @@ public class ReflectiveInvocationHandler implements InvocationHandler {
 
     private static Map<Method, MethodMetadata> methodCache = new HashMap<>();
 
-    public static void putInCache(Method m, MethodMetadata metadata) {
-        methodCache.putIfAbsent(m, metadata);
-    }
-
-    public static MethodMetadata getMethodFromCache(Method method) {
-        return methodCache.getOrDefault(method, null);
-    }
-
-
     private String baseUrl;
     private HttpClient httpClient;
 
     public ReflectiveInvocationHandler(String baseUrl) {
         this.baseUrl = baseUrl;
         httpClient = new JerseyClient();
+    }
+
+    public static void putInCache(Method m, MethodMetadata metadata) {
+        methodCache.putIfAbsent(m, metadata);
+    }
+
+    public static MethodMetadata getMethodFromCache(Method method) {
+        return methodCache.getOrDefault(method, null);
     }
 
 
