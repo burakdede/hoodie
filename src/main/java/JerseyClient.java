@@ -1,6 +1,9 @@
 import org.glassfish.jersey.client.ClientConfig;
+import org.glassfish.jersey.jackson.JacksonFeature;
 
 import javax.ws.rs.client.*;
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.lang.reflect.Type;
 import java.util.Map;
@@ -13,11 +16,11 @@ public class JerseyClient implements HttpClient {
     private static Client client;
 
     public JerseyClient() {
-        client = ClientBuilder.newClient();
+        client = ClientBuilder.newClient().register(JacksonFeature.class);
     }
 
     public JerseyClient(ClientConfig clientConfig) {
-        client = ClientBuilder.newClient(clientConfig);
+        client = ClientBuilder.newClient(clientConfig).register(JacksonFeature.class);;
     }
 
     private WebTarget addHeaders(Map<String, String> headers,
