@@ -70,7 +70,7 @@ public class HoodieMetadataParser {
                         Class<? extends Annotation> annotationType = paramAnnotation[j].annotationType();
                         if (annotationType == QueryParam.class) {
                             QueryParam queryParam = (QueryParam) paramAnnotation[j];
-                            methodMetadata.addNewQueryParam(j, queryParam.value());
+                            methodMetadata.addNewQueryParam(i, queryParam.value());
                         } else if (annotationType == Header.class) {
                             Header header = (Header) paramAnnotation[j];
                             methodMetadata.addNewHeader(j, header.value());

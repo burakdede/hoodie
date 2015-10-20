@@ -47,7 +47,7 @@ public class JerseyClient implements HttpClient {
         WebTarget target = client.target(url);
         target = addHeaders(headers, target);
         for (Map.Entry param : queryParams.entrySet()) {
-            target.queryParam((String) param.getKey(), param.getValue());
+            target = target.queryParam((String) param.getKey(), param.getValue());
         }
         T t = (T) target.request().get(c);
 
