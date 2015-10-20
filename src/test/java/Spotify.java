@@ -11,6 +11,7 @@ public interface Spotify {
     SpotifyArtistAlbums getArtistAlbums(@PathParam("id") String id);
 
 
-    @Request("GET /v1/search?type=track")
-    String searchTrack(@QueryParam("q") String songName);
+    @Request("GET /v1/search")
+    SpotifySearchArtists searchTrack(@QueryParam("q") String songName,
+                                     @QueryParam("type") String type);
 }

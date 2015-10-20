@@ -27,7 +27,6 @@ public class SpotifyArtist {
 
     private List<Map<String, String>> images;
 
-
     public SpotifyArtist() {
     }
 

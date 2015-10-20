@@ -1,6 +1,9 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import static org.junit.Assert.assertNotNull;
 
 /**
@@ -25,5 +28,12 @@ public class SpotifyApiTest {
     public void testGetArtistAlbums() {
         SpotifyArtistAlbums albums = spotify.getArtistAlbums("1vCWHaC5f2uS3yhpwWbIA6");
         assertNotNull(albums);
+    }
+
+    @Test
+    public void testSearchTrack() throws UnsupportedEncodingException {
+
+        SpotifySearchArtists searchResults = spotify.searchTrack("tania%20bowra", "artist");
+        assertNotNull(searchResults);
     }
 }
