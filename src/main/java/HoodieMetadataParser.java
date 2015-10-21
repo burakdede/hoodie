@@ -17,7 +17,7 @@ public class HoodieMetadataParser {
 
     private final static Logger logger = LoggerFactory.getLogger(HoodieMetadataParser.class.getSimpleName());
 
-    public static Map parseHeaders(Map<Integer, String> headers, Object[] args) {
+    public static Map<String, String> parseHeaders(Map<Integer, String> headers, Object[] args) {
         Map<String, String> newHeaders = new HashMap<>();
         for (Map.Entry<Integer, String> header : headers.entrySet()) {
             newHeaders.putIfAbsent((String) args[header.getKey()], header.getValue());
@@ -26,7 +26,7 @@ public class HoodieMetadataParser {
         return newHeaders;
     }
 
-    public static Map parseQueryParams(Map<Integer, String> queryParams, Object[] args) {
+    public static Map<String, String> parseQueryParams(Map<Integer, String> queryParams, Object[] args) {
         Map<String, String> newQueryParams = new HashMap<>();
         for (Map.Entry<Integer, String> param : queryParams.entrySet()) {
             newQueryParams.putIfAbsent(param.getValue(), (String) args[param.getKey()]);
