@@ -102,6 +102,10 @@ public class MethodMetadata {
                 break;
             case "head":
                 // not yet implemented
+                t = httpClient.head(
+                        HoodieMetadataParser.parseHeaders(headers, args),
+                        HoodieMetadataParser.replacePathParams(url + path, pathParams, args)
+                );
                 break;
             case "delete":
                 // not yet implemented
