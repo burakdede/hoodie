@@ -1,6 +1,7 @@
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.xml.ws.Response;
 import java.io.UnsupportedEncodingException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -83,6 +84,9 @@ public class HoodieMetadataParser {
 
                 // parse return type
                 Type t = m.getReturnType();
+                if (httpType.equalsIgnoreCase("HEAD") && m.getReturnType() != Response.class) {
+                    logger.error("HEAD request can only return Response as return type");
+                }
                 methodMetadata.setReturnType(t);
                 // parse return class
                 Class returnClass = m.getReturnType();
