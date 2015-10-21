@@ -22,7 +22,13 @@ public class HoodieTest {
         Google google = Hoodie.registerNewTarget(Google.class, "https://github.com");
         String githubPage = google.getGithubPageForUser("burakdd");
         assertNotNull(githubPage);
+    }
 
+    @Test
+    public void testGoogleHeadFail() {
+        Google google = Hoodie.registerNewTarget(Google.class, "https://www.google.com.tr");
+        String head = google.gethomeHead();
+        assertNotNull(head);
     }
 
     @Test

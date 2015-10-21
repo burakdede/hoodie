@@ -6,6 +6,9 @@ public interface Google {
     @Request("GET /")
     String gethomePage();
 
+    @Request("HEAD /")
+    String gethomeHead();
+
     @Request("GET /")
     String gethomePageWithQueryParms(@QueryParam("q") String query);
 
