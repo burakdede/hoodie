@@ -1,9 +1,11 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import javax.ws.rs.core.Response;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 /**
@@ -22,6 +24,12 @@ public class SpotifyApiTest {
     public void testGetArtist() {
         SpotifyArtist artist = spotify.getArtist("0OdUWJ0sBjDrqHygGUXeCF");
         assertNotNull(artist);
+    }
+
+    @Test
+    public void testGetArtistHead() {
+        Response response = spotify.getArtistHeadReq("0OdUWJ0sBjDrqHygGUXeCF");
+        assertEquals(response.getStatus(), 200);
     }
 
     @Test
