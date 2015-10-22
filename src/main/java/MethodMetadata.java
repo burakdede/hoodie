@@ -1,5 +1,6 @@
 import org.slf4j.LoggerFactory;
 
+import javax.ws.rs.client.Entity;
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 import java.util.HashMap;
@@ -8,7 +9,7 @@ import java.util.Map;
 /**
  * Created by burakdede on 15.10.15.
  */
-public class MethodMetadata {
+public class MethodMetadata<T> {
 
     private final static org.slf4j.Logger logger = LoggerFactory.getLogger(MethodMetadata.class.getSimpleName());
 
@@ -21,8 +22,10 @@ public class MethodMetadata {
     private String httpRequestType;
 
     private Map<Integer, String> queryParams = new HashMap<>();
-    private Map<Integer, String> headers = new HashMap<>();
+    private Map<String, String> headers = new HashMap<>();
     private Map<Integer, String> pathParams = new HashMap<>();
+
+    private Type body;
 
     private Class returnClass;
 
@@ -32,12 +35,20 @@ public class MethodMetadata {
         this.httpRequestType = httpRequestType;
     }
 
+    public Type getBody() {
+        return body;
+    }
+
+    public void setBody(Type body) {
+        this.body = body;
+    }
+
     public void addNewPathParam(Integer integer, String name) {
         pathParams.putIfAbsent(integer, name);
     }
 
-    public void addNewHeader(Integer integer, String name) {
-        headers.putIfAbsent(integer, name);
+    public void addNewHeader(String key, String value) {
+        headers.putIfAbsent(key, value);
     }
 
     public void addNewQueryParam(Integer index, String name) {
@@ -92,23 +103,28 @@ public class MethodMetadata {
         switch (httpRequestType.toLowerCase()) {
             case "get":
                  t = httpClient.get(
-                        HoodieMetadataParser.parseHeaders(headers, args),
+                        headers,
                         HoodieMetadataParser.parseQueryParams(queryParams, args),
                         HoodieMetadataParser.replacePathParams(url + path, pathParams, args),
                         returnClass);
                 break;
             case "post":
-                // not yet implemented
+                 t = httpClient.post(
+                        headers,
+                        Entity.json(body),
+                        HoodieMetadataParser.replacePathParams(url + path, pathParams, args),
+                        returnClass
+                    );
                 break;
             case "head":
                 t = httpClient.head(
-                        HoodieMetadataParser.parseHeaders(headers, args),
+                        headers,
                         HoodieMetadataParser.replacePathParams(url + path, pathParams, args)
                     );
                 break;
             case "delete":
                 httpClient.delete(
-                        HoodieMetadataParser.parseHeaders(headers, args),
+                        headers,
                         HoodieMetadataParser.replacePathParams(url + path, pathParams, args),
                         returnClass
                     );
