@@ -15,6 +15,9 @@ public interface Spotify {
     @Request("GET /v1/artists/{id}/albums")
     SpotifyArtistAlbums getArtistAlbums(@PathParam("id") String id);
 
+    @Request("DELETE /v1/artists/{id}/albums")
+    SpotifyArtistAlbums deleteArtistAlbum(@PathParam("id") String id);
+
 
     @Request("GET /v1/search")
     SpotifySearchArtists searchTrack(@QueryParam("q") String songName,
