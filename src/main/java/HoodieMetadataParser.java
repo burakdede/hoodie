@@ -53,6 +53,8 @@ public class HoodieMetadataParser {
 
     public static void parse(Class claz) {
 
+        MethodMetadata methodMetadata = null;
+
         for (Method m : claz.getMethods()) {
             if (m.isAnnotationPresent(Request.class)) {
                 // parse request line
@@ -61,9 +63,17 @@ public class HoodieMetadataParser {
                 String httpType = requestPathPair[0];
                 String path = requestPathPair[1];
 
-                MethodMetadata methodMetadata = new MethodMetadata(m, path, httpType);
+                methodMetadata = new MethodMetadata(m, path, httpType);
+
+                // parse return type
+                Type t = m.getReturnType();
+                if (httpType.equalsIgnoreCase("HEAD") && m.getReturnType() != Response.class) {
+                    logger.error("HEAD request can only return Response as return type");
+                }
+                methodMetadata.setReturnType(t);
 
                 // parse parameters and annotations
+
                 Annotation[][] paramAnnotations = m.getParameterAnnotations();
                 for (int i = 0; i < paramAnnotations.length; i++) {
                     Annotation[] paramAnnotation = paramAnnotations[i];
@@ -72,29 +82,30 @@ public class HoodieMetadataParser {
                         if (annotationType == QueryParam.class) {
                             QueryParam queryParam = (QueryParam) paramAnnotation[j];
                             methodMetadata.addNewQueryParam(i, queryParam.value());
-                        } else if (annotationType == Header.class) {
-                            Header header = (Header) paramAnnotation[j];
-                            methodMetadata.addNewHeader(j, header.value());
                         } else if (annotationType == PathParam.class) {
                             PathParam pathParam = (PathParam) paramAnnotation[j];
                             methodMetadata.addNewPathParam(j, pathParam.value());
+                        } else if (annotationType == Body.class) {
+                            methodMetadata.setBody(m.getAnnotatedParameterTypes()[j].getType());
                         }
                     }
                 }
 
-                // parse return type
-                Type t = m.getReturnType();
-                if (httpType.equalsIgnoreCase("HEAD") && m.getReturnType() != Response.class) {
-                    logger.error("HEAD request can only return Response as return type");
-                }
-                methodMetadata.setReturnType(t);
-                // parse return class
-                Class returnClass = m.getReturnType();
-                methodMetadata.setReturnClass(returnClass);
 
-                // store metadata in cache for each invocation
-                ReflectiveInvocationHandler.putInCache(m, methodMetadata);
             }
+
+            if (m.isAnnotationPresent(Header.class)) {
+                Header header = m.getAnnotation(Header.class);
+                String[] headerKeyValue = header.value().split(":");
+                methodMetadata.addNewHeader(headerKeyValue[0], headerKeyValue[1]);
+            }
+
+            // parse return class
+            Class returnClass = m.getReturnType();
+            methodMetadata.setReturnClass(returnClass);
+
+            // store metadata in cache for each invocation
+            ReflectiveInvocationHandler.putInCache(m, methodMetadata);
         }
     }
 }
