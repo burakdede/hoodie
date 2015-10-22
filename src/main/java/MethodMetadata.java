@@ -101,14 +101,17 @@ public class MethodMetadata {
                 // not yet implemented
                 break;
             case "head":
-                // not yet implemented
                 t = httpClient.head(
                         HoodieMetadataParser.parseHeaders(headers, args),
                         HoodieMetadataParser.replacePathParams(url + path, pathParams, args)
-                );
+                    );
                 break;
             case "delete":
-                // not yet implemented
+                httpClient.delete(
+                        HoodieMetadataParser.parseHeaders(headers, args),
+                        HoodieMetadataParser.replacePathParams(url + path, pathParams, args),
+                        returnClass
+                    );
                 break;
             default:
                 logger.error("Unsupported http method type: " + httpRequestType);
