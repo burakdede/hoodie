@@ -27,6 +27,12 @@ public class SpotifyApiTest {
     }
 
     @Test
+    public void testCreatePlaylist() {
+        Playlist playlist = spotify.createNewPlaylist(new PlaylistRequest("awesome metal songs", true));
+        assertNotNull(playlist);
+    }
+
+    @Test
     public void testDeleteArtistAlbum() {
         SpotifyArtistAlbums albums = spotify.deleteArtistAlbum("1vCWHaC5f2uS3yhpwWbIA6");
         assertNotNull(albums);
