@@ -8,7 +8,9 @@ Will updated soon...
 
 # Whats New
 
-Will updated soon...
+* Added support for all http methods
+* Added support for url path parameters
+* Fix the bug related to headers
 
 # Download
 
