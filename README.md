@@ -12,7 +12,7 @@ Will updated soon...
 * Added support for url path parameters
 * Fix the bug related to headers
 
- # Download
+# Download
 
 Will updated soon...
 
@@ -21,6 +21,7 @@ Will updated soon...
 * Make error handling more robust
 * Custom exceptions related to hoodie
 * Make http client loosely coupled with jersey client
+* Push alpha version to maven central
 
 Will updated soon...
 
