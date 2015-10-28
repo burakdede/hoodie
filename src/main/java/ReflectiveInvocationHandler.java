@@ -1,5 +1,5 @@
-import com.sun.deploy.config.DefaultConfig;
-import org.glassfish.jersey.client.ClientConfig;
+import http.HttpClient;
+import http.JerseyClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
