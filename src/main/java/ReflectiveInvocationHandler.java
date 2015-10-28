@@ -26,6 +26,18 @@ public class ReflectiveInvocationHandler implements InvocationHandler {
         httpClient = new JerseyClient();
     }
 
+    /**
+     * Pass http client implementation which
+     * implements basic http methods. Don't force people to use JerseyClient.
+     *
+     * @param baseUrl
+     * @param httpClient
+     */
+    public ReflectiveInvocationHandler(String baseUrl, HttpClient httpClient) {
+        this.baseUrl = baseUrl;
+        this.httpClient = httpClient;
+    }
+
     public static void putInCache(Method m, MethodMetadata metadata) {
         methodCache.putIfAbsent(m, metadata);
     }

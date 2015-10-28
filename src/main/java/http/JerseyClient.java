@@ -35,6 +35,7 @@ public class JerseyClient implements HttpClient {
         WebTarget target = client.target(url);
         target = addHeaders(headers, target);
         Response response = target.request().head();
+
         return response;
     }
 

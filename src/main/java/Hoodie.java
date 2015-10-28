@@ -1,3 +1,4 @@
+import http.HttpClient;
 import org.glassfish.jersey.client.ClientConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +21,17 @@ public class Hoodie {
         target = (T) Proxy.newProxyInstance(clazz.getClassLoader(),
                 new Class[]{clazz},
                 new ReflectiveInvocationHandler(baseUrl));
+
+        return target;
+    }
+
+    public static <T> T registerNewTarget(Class<T> clazz, String baseUrl, HttpClient httpClient) {
+        T target;
+
+        HoodieMetadataParser.parse(clazz);
+        target = (T) Proxy.newProxyInstance(clazz.getClassLoader(),
+                new Class[]{clazz},
+                new ReflectiveInvocationHandler(baseUrl, httpClient));
 
         return target;
     }

@@ -1,6 +1,6 @@
-import com.sun.org.apache.bcel.internal.generic.FieldGenOrMethodGen;
 import org.junit.Test;
 
+import javax.ws.rs.core.Response;
 import java.lang.reflect.Method;
 
 import static org.junit.Assert.assertNotNull;
@@ -27,7 +27,7 @@ public class HoodieTest {
     @Test
     public void testGoogleHeadFail() {
         Google google = Hoodie.registerNewTarget(Google.class, "https://www.google.com.tr");
-        String head = google.gethomeHead();
+        Response head = google.gethomeHead();
         assertNotNull(head);
     }
 
