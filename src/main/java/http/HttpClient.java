@@ -1,3 +1,5 @@
+package http;
+
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
 import java.util.Map;
