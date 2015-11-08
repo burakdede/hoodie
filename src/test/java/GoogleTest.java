@@ -8,7 +8,7 @@ import static org.junit.Assert.assertNotNull;
 /**
  * Created by burakdede on 16.10.15.
  */
-public class HoodieTest {
+public class GoogleTest {
 
     @Test
     public void testInvocation() {
