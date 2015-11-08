@@ -18,10 +18,9 @@ Will updated soon...
 
 # Roadmap
 
-* Make error handling more robust
-* Custom exceptions related to hoodie
+* Make error handling & exceptions more robust
 * Make http client loosely coupled with jersey client
-* Push alpha version to maven central
+* Push latest version to maven central
 
 Will updated soon...
 
