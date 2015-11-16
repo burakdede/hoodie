@@ -9,6 +9,14 @@ import static org.junit.Assert.assertNotNull;
 
 /**
  * Created by burakdede on 9.11.15.
+ *
+ * Make request to rest client written in python
+ * within the folder rest-api
+ *
+ * 1- source venv/bin/activate
+ * 2- python app.py
+ * 3- browse localhost:8888/rest
+ *
  */
 public class HoodieTest {
 
