@@ -86,7 +86,7 @@ public class HoodieMetadataParser {
                 logger.debug("Parsing return type");
                 Type t = m.getReturnType();
                 if (httpType.equalsIgnoreCase("HEAD") && m.getReturnType() != Response.class) {
-                    logger.error("HEAD only support Response as return type.");
+                    logger.error("HEAD only support javax.ws.rs.core.Response as return type.");
                 }
 
                 methodMetadata.setReturnType(t);
