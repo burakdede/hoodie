@@ -92,7 +92,7 @@ public class HoodieMetadataParser {
                 methodMetadata.setReturnType(t);
                 methodMetadata.setReturnClass(m.getReturnType());
 
-                logger.debug("Return type: " + t.getTypeName());
+                logger.debug("Return type: " + t.getTypeName() + " and class: " + m.getReturnType());
 
 
                 // parse parameters and annotations
