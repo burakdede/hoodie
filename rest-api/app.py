@@ -16,6 +16,12 @@ class RestHandler(BaseHandler):
 		self.write("get method called")
 
 	def post(self):
+		args = self.get_arguments()
+
+		# print arguments
+		for arg in args:
+			logger.info(arg)
+
 		self.write("post method called")
 
 	def head(self):
