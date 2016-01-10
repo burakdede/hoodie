@@ -12,8 +12,6 @@ public class Hoodie {
 
     private final static Logger logger = LoggerFactory.getLogger(Hoodie.class.getSimpleName());
 
-    private static HoodieMetadataParser hoodieMetadataParser;
-
     public static <T> T registerNewTarget(Class<T> clazz, String baseUrl) {
         T target;
 
