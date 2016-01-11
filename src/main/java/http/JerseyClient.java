@@ -64,6 +64,8 @@ public class JerseyClient implements HttpClient {
         T t = (T) target.request().post(entity, c);
 
         return t;
+
+
     }
 
     @Override

@@ -1,3 +1,5 @@
+package spotify;
+
 import annotation.*;
 
 import javax.ws.rs.core.Response;
