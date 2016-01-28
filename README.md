@@ -19,8 +19,7 @@ Will updated soon...
 # Roadmap
 
 * Make error handling & exceptions more robust
-* Make http client loosely coupled with jersey client
-* Push latest version to maven central
+* Push latest version to maven central or another easy option
 
 Will updated soon...
 
