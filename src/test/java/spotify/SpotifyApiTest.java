@@ -18,7 +18,7 @@ public class SpotifyApiTest {
 
     @Before
     public void registerTarget() {
-        spotify = Hoodie.registerNewTarget(Spotify.class, "https://api.spotify.com");
+        //spotify = Hoodie.registerNewTarget(Spotify.class, "https://api.spotify.com");
     }
 
     @Test
