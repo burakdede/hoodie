@@ -8,8 +8,8 @@ Will updated soon...
 
 # Whats New
 
-* Added support for all http methods
-* Added support for url path parameters
+* ~~Added support for all http methods~~
+* ~~Added support for url path parameters~~
 * Fix the bug related to headers
 
 # Download
