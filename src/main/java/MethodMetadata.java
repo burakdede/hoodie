@@ -1,5 +1,5 @@
-import annotation.Request;
 import http.HttpClient;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.client.Entity;
@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public class MethodMetadata<T> {
 
-    private final static org.slf4j.Logger logger = LoggerFactory.getLogger(MethodMetadata.class.getSimpleName());
+    private final static Logger LOGGER = LoggerFactory.getLogger(MethodMetadata.class);
 
     private Method m;
 
@@ -109,7 +109,7 @@ public class MethodMetadata<T> {
                     );
                 break;
             default:
-                logger.error("Unsupported http method type: " + httpRequestType);
+                LOGGER.error("Unsupported http method type: " + httpRequestType);
                 break;
         }
 

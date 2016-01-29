@@ -2,6 +2,8 @@ package http;
 
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.jackson.JacksonFeature;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.client.*;
 import javax.ws.rs.core.Response;
@@ -11,6 +13,8 @@ import java.util.Map;
  * Created by burakdede on 18.10.15.
  */
 public class JerseyClient implements HttpClient {
+
+    private final static Logger LOGGER = LoggerFactory.getLogger(JerseyClient.class);
 
     private static Client client;
 

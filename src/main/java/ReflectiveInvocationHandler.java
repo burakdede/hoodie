@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public class ReflectiveInvocationHandler implements InvocationHandler {
 
-    private final static Logger logger = LoggerFactory.getLogger(ReflectiveInvocationHandler.class.getSimpleName());
+    private final static Logger LOGGER = LoggerFactory.getLogger(ReflectiveInvocationHandler.class.getSimpleName());
 
     private static Map<Method, MethodMetadata> methodCache = new HashMap<>();
 
@@ -59,7 +59,7 @@ public class ReflectiveInvocationHandler implements InvocationHandler {
                 return method.invoke(this, args);
             }
         } catch (InvocationTargetException e) {
-            logger.trace("Problem while invoking method", e);
+            LOGGER.trace("Problem while invoking method", e);
         }
         return null;
     }

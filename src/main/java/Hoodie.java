@@ -10,7 +10,7 @@ import java.lang.reflect.Proxy;
  */
 public class Hoodie {
 
-    private final static Logger logger = LoggerFactory.getLogger(Hoodie.class.getSimpleName());
+    private final static Logger LOGGER = LoggerFactory.getLogger(Hoodie.class.getSimpleName());
 
     public static <T> T registerNewTarget(Class<T> clazz, String baseUrl) {
         T target;

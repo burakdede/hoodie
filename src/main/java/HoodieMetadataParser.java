@@ -16,13 +16,13 @@ import java.util.Map;
  */
 public class HoodieMetadataParser {
 
-    private final static Logger logger = LoggerFactory.getLogger(HoodieMetadataParser.class.getSimpleName());
+    private final static Logger LOGGER = LoggerFactory.getLogger(HoodieMetadataParser.class);
 
     public static Map<String, String> parseHeaders(Map<Integer, String> headers, Object[] args) {
         Map<String, String> newHeaders = new HashMap<>();
         for (Map.Entry<Integer, String> header : headers.entrySet()) {
             newHeaders.putIfAbsent((String) args[header.getKey()], header.getValue());
-            logger.debug("Header key: " + header.getKey() + " value: " + header.getValue());
+            LOGGER.debug("Header key: " + header.getKey() + " value: " + header.getValue());
         }
 
         return newHeaders;
@@ -36,10 +36,10 @@ public class HoodieMetadataParser {
      * @return
      */
     public static Map<String, String> parseQueryParams(Map<Integer, String> queryParams, Object[] args) {
-        logger.debug("Parsing query parameters");
+        LOGGER.debug("Parsing query parameters");
         Map<String, String> newQueryParams = new HashMap<>();
         for (Map.Entry<Integer, String> param : queryParams.entrySet()) {
-            logger.debug("Query param key: " + param.getValue() + " value: " + args[param.getKey()]);
+            LOGGER.debug("Query param key: " + param.getValue() + " value: " + args[param.getKey()]);
             newQueryParams.putIfAbsent(param.getValue(), (String) args[param.getKey()]);
         }
 
@@ -53,10 +53,10 @@ public class HoodieMetadataParser {
             try {
                 paramEncoded = URLEncoder.encode((String) paramVal, "UTF-8");
             } catch (UnsupportedEncodingException e) {
-                logger.error("Can not encode given path param => " + paramVal);
+                LOGGER.error("Can not encode given path param => " + paramVal);
                 e.printStackTrace();
             }
-            logger.debug("Replacing path " + path + " with " + pathParam.getValue());
+            LOGGER.debug("Replacing path " + path + " with " + pathParam.getValue());
             path = path.replaceAll("\\{(" + pathParam.getValue() + ")\\}", paramEncoded);
         }
         return path;
@@ -70,29 +70,29 @@ public class HoodieMetadataParser {
             if (m.isAnnotationPresent(Request.class)) {
 
                 // parse request line
-                logger.debug("Parsing request line");
+                LOGGER.debug("Parsing request line");
                 Request requestAnnotation = m.getAnnotation(Request.class);
                 String[] requestPathPair = requestAnnotation.value().split(" ");
                 String httpType = requestPathPair[0];
                 String path = requestPathPair[1];
                 RequestType requestType = RequestType.findRequestType(httpType);
-                logger.debug("Http request type: " + httpType);
-                logger.debug("Request path: " + path);
+                LOGGER.debug("Http request type: " + httpType);
+                LOGGER.debug("Request path: " + path);
 
 
                 methodMetadata = new MethodMetadata(m, path, requestType);
 
                 // parse return type
-                logger.debug("Parsing return type");
+                LOGGER.debug("Parsing return type");
                 Type t = m.getReturnType();
                 if (httpType.equalsIgnoreCase("HEAD") && m.getReturnType() != Response.class) {
-                    logger.error("HEAD only support javax.ws.rs.core.Response as return type.");
+                    LOGGER.error("HEAD only support javax.ws.rs.core.Response as return type.");
                 }
 
                 methodMetadata.setReturnType(t);
                 methodMetadata.setReturnClass(m.getReturnType());
 
-                logger.debug("Return type: " + t.getTypeName() + " and class: " + m.getReturnType());
+                LOGGER.debug("Return type: " + t.getTypeName() + " and class: " + m.getReturnType());
 
 
                 // parse parameters and annotations
@@ -104,14 +104,14 @@ public class HoodieMetadataParser {
                         if (annotationType == QueryParam.class) {
                             QueryParam queryParam = (QueryParam) paramAnnotation[j];
                             methodMetadata.addNewQueryParam(i, queryParam.value());
-                            logger.debug("Query param: " + queryParam.value());
+                            LOGGER.debug("Query param: " + queryParam.value());
                         } else if (annotationType == PathParam.class) {
                             PathParam pathParam = (PathParam) paramAnnotation[j];
                             methodMetadata.addNewPathParam(j, pathParam.value());
-                            logger.debug("Path param: " + pathParam.value());
+                            LOGGER.debug("Path param: " + pathParam.value());
                         } else if (annotationType == Body.class) {
                             methodMetadata.setBody(m.getAnnotatedParameterTypes()[j].getType());
-                            logger.debug("Body: " + m.getAnnotatedParameterTypes()[j].getType());
+                            LOGGER.debug("Body: " + m.getAnnotatedParameterTypes()[j].getType());
                         }
                     }
                 }
@@ -122,7 +122,7 @@ public class HoodieMetadataParser {
                 Header header = m.getAnnotation(Header.class);
                 String[] headerKeyValue = header.value().split(":");
                 methodMetadata.addNewHeader(headerKeyValue[0], headerKeyValue[1]);
-                logger.debug("Header: " + headerKeyValue[0] + " " + headerKeyValue[1]);
+                LOGGER.debug("Header: " + headerKeyValue[0] + " " + headerKeyValue[1]);
             }
 
             // store metadata in cache for each invocation
