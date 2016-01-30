@@ -1,5 +1,3 @@
-package spotify;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**

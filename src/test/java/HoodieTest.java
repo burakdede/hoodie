@@ -20,7 +20,7 @@ import static org.junit.Assert.assertNotNull;
  */
 public class HoodieTest {
 
-    private static final String URL = "http://localhost:8888";
+    /*private static final String URL = "http://localhost:8888";
     private HoodieRest mockRest;
 
     @Before
@@ -50,5 +50,5 @@ public class HoodieTest {
     public void testDelete() {
         String response = mockRest.delete();
         assertNotNull(response);
-    }
+    }*/
 }

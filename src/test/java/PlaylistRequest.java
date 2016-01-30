@@ -1,5 +1,3 @@
-package spotify;
-
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
 /**
