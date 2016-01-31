@@ -16,13 +16,6 @@ Will updated soon...
 
 Will updated soon...
 
-# Roadmap
-
-* Make error handling & exceptions more robust
-* Push latest version to maven central or another easy option
-
-Will updated soon...
-
 # License
  	Copyright (C) Burak Dede.
  
