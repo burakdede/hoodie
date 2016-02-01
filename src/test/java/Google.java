@@ -1,3 +1,4 @@
+import annotation.Header;
 import annotation.PathParam;
 import annotation.QueryParam;
 import annotation.Request;
@@ -20,5 +21,6 @@ public interface Google {
     String gethomePageWithQueryParms(@QueryParam("q") String query);
 
     @Request("GET /{username}")
+    @Header("Content-type: application/json")
     String getGithubPageForUser(@PathParam("username") String username);
 }

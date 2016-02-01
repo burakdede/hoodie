@@ -28,6 +28,7 @@ public class SpotifyApiTest {
     @Test
     public void testGetArtistHead() {
         Response response = spotify.getArtistHeadReq("0OdUWJ0sBjDrqHygGUXeCF");
+
         assertEquals(response.getStatus(), 200);
     }
 

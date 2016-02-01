@@ -77,7 +77,8 @@ public class MethodMetadata<T> {
                         headers,
                         HoodieMetadataParser.parseQueryParams(queryParams, args),
                         HoodieMetadataParser.replacePathParams(fullPath, pathParams, args),
-                        returnClass);
+                        returnClass
+                    );
                 break;
             case POST:
                  t = httpClient.post(

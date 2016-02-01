@@ -14,7 +14,8 @@ public class Hoodie {
         T target;
 
         HoodieMetadataParser.parse(clazz);
-        target = (T) Proxy.newProxyInstance(clazz.getClassLoader(), new Class[]{clazz},
+        target = (T) Proxy.newProxyInstance(clazz.getClassLoader(),
+                new Class[] { clazz },
                 new ReflectiveInvocationHandler(baseUrl));
 
         return target;
@@ -25,7 +26,7 @@ public class Hoodie {
 
         HoodieMetadataParser.parse(clazz);
         target = (T) Proxy.newProxyInstance(clazz.getClassLoader(),
-                new Class[]{clazz},
+                new Class[] { clazz },
                 new ReflectiveInvocationHandler(baseUrl, httpClient));
 
         return target;
