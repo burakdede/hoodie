@@ -26,8 +26,7 @@ public class JerseyClient implements HttpClient {
         client = ClientBuilder.newClient(clientConfig).register(JacksonFeature.class);;
     }
 
-    private WebTarget addHeaders(Map<String, String> headers,
-                                          WebTarget target) {
+    private WebTarget addHeaders(Map<String, String> headers, WebTarget target) {
         for (Map.Entry<String, String> header : headers.entrySet()) {
             target.request().header(header.getKey(), header.getValue());
         }
@@ -44,10 +43,7 @@ public class JerseyClient implements HttpClient {
     }
 
     @Override
-    public <T> T get(Map<String, String> headers,
-                        Map<String, String> queryParams,
-                        String url,
-                        Class c) {
+    public <T> T get(Map<String, String> headers, Map<String, String> queryParams, String url, Class c) {
         WebTarget target = client.target(url);
         target = addHeaders(headers, target);
         for (Map.Entry param : queryParams.entrySet()) {

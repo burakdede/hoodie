@@ -18,6 +18,13 @@ public class HoodieMetadataParser {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(HoodieMetadataParser.class);
 
+    /**
+     * Parse headers annotation parameters
+     *
+     * @param headers
+     * @param args
+     * @return
+     */
     public static Map<String, String> parseHeaders(Map<Integer, String> headers, Object[] args) {
         Map<String, String> newHeaders = new HashMap<>();
         for (Map.Entry<Integer, String> header : headers.entrySet()) {
@@ -36,8 +43,9 @@ public class HoodieMetadataParser {
      * @return
      */
     public static Map<String, String> parseQueryParams(Map<Integer, String> queryParams, Object[] args) {
-        LOGGER.debug("Parsing query parameters");
+
         Map<String, String> newQueryParams = new HashMap<>();
+
         for (Map.Entry<Integer, String> param : queryParams.entrySet()) {
             LOGGER.debug("Query param key: " + param.getValue() + " value: " + args[param.getKey()]);
             newQueryParams.putIfAbsent(param.getValue(), (String) args[param.getKey()]);
@@ -46,6 +54,13 @@ public class HoodieMetadataParser {
         return newQueryParams;
     }
 
+    /**
+     * Parse path parameters
+     * @param path
+     * @param pathParams
+     * @param args
+     * @return
+     */
     public static String replacePathParams(String path, Map<Integer, String> pathParams, Object[] args) {
         String paramEncoded = null;
         for (Map.Entry<Integer, String> pathParam : pathParams.entrySet()) {
@@ -62,15 +77,14 @@ public class HoodieMetadataParser {
         return path;
     }
 
-    public static void parse(Class claz) {
+    public static void parse(Class clazz) {
 
         MethodMetadata methodMetadata = null;
 
-        for (Method m : claz.getMethods()) {
+        for (Method m : clazz.getMethods()) {
             if (m.isAnnotationPresent(Request.class)) {
 
                 // parse request line
-                LOGGER.debug("Parsing request line");
                 Request requestAnnotation = m.getAnnotation(Request.class);
                 String[] requestPathPair = requestAnnotation.value().split(" ");
                 String httpType = requestPathPair[0];
@@ -83,8 +97,8 @@ public class HoodieMetadataParser {
                 methodMetadata = new MethodMetadata(m, path, requestType);
 
                 // parse return type
-                LOGGER.debug("Parsing return type");
                 Type t = m.getReturnType();
+                // this should change
                 if (httpType.equalsIgnoreCase("HEAD") && m.getReturnType() != Response.class) {
                     LOGGER.error("HEAD only support javax.ws.rs.core.Response as return type.");
                 }

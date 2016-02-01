@@ -1,12 +1,8 @@
-import annotation.Request;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-
 /**
  * Created by burakdede on 28.10.15.
  */
 public enum RequestType {
+
     HEAD, GET, POST, DELETE, UNSUPPORTED;
 
     public static RequestType findRequestType(String httpMethod) {
