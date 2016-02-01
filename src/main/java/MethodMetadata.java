@@ -37,10 +37,6 @@ public class MethodMetadata<T> {
         this.httpRequestType = httpRequestType;
     }
 
-    public Class getReturnClass() {
-        return returnClass;
-    }
-
     public void setReturnClass(Class returnClass) {
         this.returnClass = returnClass;
     }
@@ -63,10 +59,6 @@ public class MethodMetadata<T> {
 
     public void addNewQueryParam(Integer index, String name) {
         queryParams.putIfAbsent(index, name);
-    }
-
-    public Type getReturnType() {
-        return returnType;
     }
 
     public void setReturnType(Type returnType) {
