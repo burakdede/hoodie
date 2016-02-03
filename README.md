@@ -6,15 +6,15 @@
 
 ## 1 - Define your api calls
 
-![Define Api Calls](https://www.dropbox.com/s/beswb68fsemk7ig/Screenshot%202016-02-03%2023.41.00.png?dl=0)
+![Define Api Calls](https://i.imgur.com/JczNXBs.png?1)
 
 ## 2 - Register your interface
 
-![Register Interface](https://www.dropbox.com/s/uk9vkf3g9p2er9j/Screenshot%202016-02-03%2023.41.39.png?dl=0)
+![Register Interface](https://i.imgur.com/Md71Pw9.png?1)
 
 ## 3 - Make api calls
 
-![Make api calls](https://www.dropbox.com/s/go9b4n0uhdfia7h/Screenshot%202016-02-03%2023.42.10.png?dl=0)
+![Make api calls](https://i.imgur.com/lGbshCh.png)
 
 # Documentation
 
