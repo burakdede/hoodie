@@ -1,6 +1,7 @@
-# Hoodie - Type safe wrapper for jersey client
+# Hoodie - Type safe wrapper for [jersey client](https://jersey.java.net/documentation/latest/client.html)
 
-###**Hoodie** is a wrapper around the Jersey Client that makes your rest api calls annotation based and type safe
+###**Hoodie** is a wrapper around the Jersey Client that makes your rest call definitions annotation based and type safe
+
 
 # Documentation
 
