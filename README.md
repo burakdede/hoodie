@@ -1,7 +1,20 @@
 # Hoodie - Type safe wrapper for [jersey client](https://jersey.java.net/documentation/latest/client.html)
 
-###**Hoodie** is a wrapper around the Jersey Client that makes your rest call definitions annotation based and type safe
+**Hoodie** is a wrapper around the Jersey Client that makes your rest call definitions annotation based and type safe
 
+# Quick Intro
+
+## 1 - Define your api calls
+
+![Define Api Calls](https://www.dropbox.com/s/beswb68fsemk7ig/Screenshot%202016-02-03%2023.41.00.png?dl=0)
+
+## 2 - Register your interface
+
+![Register Interface](https://www.dropbox.com/s/uk9vkf3g9p2er9j/Screenshot%202016-02-03%2023.41.39.png?dl=0)
+
+## 3 - Make api calls
+
+![Make api calls](https://www.dropbox.com/s/go9b4n0uhdfia7h/Screenshot%202016-02-03%2023.42.10.png?dl=0)
 
 # Documentation
 
