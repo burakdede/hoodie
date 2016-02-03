@@ -20,15 +20,4 @@ public class Hoodie {
 
         return target;
     }
-
-    public static <T> T registerNewTarget(Class<T> clazz, String baseUrl, HttpClient httpClient) {
-        T target;
-
-        HoodieMetadataParser.parse(clazz);
-        target = (T) Proxy.newProxyInstance(clazz.getClassLoader(),
-                new Class[] { clazz },
-                new ReflectiveInvocationHandler(baseUrl, httpClient));
-
-        return target;
-    }
 }
