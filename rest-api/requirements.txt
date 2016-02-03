@@ -1,6 +1,0 @@
-backports-abc==0.4
-backports.ssl-match-hostname==3.4.0.2
-certifi==2015.9.6.2
-singledispatch==3.4.0.3
-six==1.10.0
-tornado==4.3
