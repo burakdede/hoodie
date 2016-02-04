@@ -123,7 +123,13 @@ Check other examples at test folder.
 
 # Download
 
-Will updated soon...
+Get it from maven central
+
+    <dependency>
+        <groupId>com.burakdd</groupId>
+        <artifactId>hoodie</artifactId>
+        <version>0.0.1</version>
+    </dependency>
 
 # License
  	Copyright (C) Burak Dede.
