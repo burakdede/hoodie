@@ -2,6 +2,11 @@
 
 **Hoodie** is a wrapper around the Jersey Client that makes your rest call definitions annotation based and type safe
 
+
+**Hoodie** comes handy when you have different services and you share a lot of domain classes 
+(which happens a lot for my case) and do not want to write same http call, auth, parsing and other stuff every time. 
+I included some samples in **test** folder for api's like Spotify.
+
 # Quick Intro
 
 ## 1 - Define your api calls
