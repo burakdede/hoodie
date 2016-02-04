@@ -131,7 +131,7 @@ Check other examples at test folder.
 Get it from maven central
 
     <dependency>
-        <groupId>com.burakdd</groupId>
+        <groupId>com.burakdede</groupId>
         <artifactId>hoodie</artifactId>
         <version>0.0.1</version>
     </dependency>
