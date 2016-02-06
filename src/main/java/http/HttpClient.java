@@ -24,11 +24,11 @@ import java.util.Map;
  */
 public interface HttpClient {
 
-    public Response head(Map<String, String> headers, String url);
+    Response head(Map<String, String> headers, String url);
 
-    public <T> T get(Map<String, String> headers, Map<String, String> queryParams, String url, Class c);
+    <T> T get(Map<String, String> headers, Map<String, String> queryParams, String url, Class c);
 
-    public <T> T post(Map<String, String> headers, Entity entity, String url, Class c);
+    <T> T post(Map<String, String> headers, Entity entity, String url, Class c);
 
-    public <T> T delete(Map<String, String> headers, String url, Class c);
+    <T> T delete(Map<String, String> headers, String url, Class c);
 }
