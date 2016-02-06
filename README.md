@@ -119,13 +119,6 @@ You may want to send complicated object with request body so use @Body.
 
 Check other examples at test folder.
 
-
-# Whats New
-
-* ~~Added support for all http methods~~
-* ~~Added support for url path parameters~~
-* ~~Fix the bug related to headers~~
-
 # Download
 
 Get it from maven central
