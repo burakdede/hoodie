@@ -15,6 +15,7 @@
  */
 import http.HttpClient;
 import http.JerseyClient;
+import org.glassfish.jersey.client.ClientConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,6 +40,11 @@ public class ReflectiveInvocationHandler implements InvocationHandler {
     public ReflectiveInvocationHandler(String baseUrl) {
         this.baseUrl = baseUrl;
         httpClient = new JerseyClient();
+    }
+
+    public ReflectiveInvocationHandler(String baseUrl, ClientConfig config) {
+        this.baseUrl = baseUrl;
+        httpClient = new JerseyClient(config);
     }
 
     public static void putInCache(Method m, MethodMetadata metadata) {

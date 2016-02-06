@@ -13,6 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import org.glassfish.jersey.client.ClientConfig;
+
 import java.lang.reflect.Proxy;
 
 /**
@@ -27,6 +29,17 @@ public class Hoodie {
         target = (T) Proxy.newProxyInstance(clazz.getClassLoader(),
                 new Class[] { clazz },
                 new ReflectiveInvocationHandler(baseUrl));
+
+        return target;
+    }
+
+    public static <T> T registerNewTarget(Class<T> clazz, String baseUrl, ClientConfig config) {
+        T target;
+
+        HoodieMetadataParser.parse(clazz);
+        target = (T) Proxy.newProxyInstance(clazz.getClassLoader(),
+                new Class[]{clazz},
+                new ReflectiveInvocationHandler(baseUrl, config));
 
         return target;
     }
