@@ -22,6 +22,14 @@ import java.lang.reflect.Proxy;
  */
 public class Hoodie {
 
+    /**
+     * Register new target
+     *
+     * @param clazz Interface type to register
+     * @param baseUrl http url for remote
+     * @param <T>
+     * @return
+     */
     public static <T> T registerNewTarget(Class<T> clazz, String baseUrl) {
         T target;
 
@@ -33,6 +41,15 @@ public class Hoodie {
         return target;
     }
 
+    /**
+     * Register new target with client config
+     *
+     * @param clazz Interface type to register
+     * @param baseUrl http url for remote
+     * @param config ClientConfig for jersey client
+     * @param <T>
+     * @return
+     */
     public static <T> T registerNewTarget(Class<T> clazz, String baseUrl, ClientConfig config) {
         T target;
 
