@@ -119,6 +119,10 @@ You may want to send complicated object with request body so use @Body.
 
 Check other examples at test folder.
 
+# Whats New
+
+* ability to configure jersey client via hoodie
+
 # Download
 
 Get it from maven central
