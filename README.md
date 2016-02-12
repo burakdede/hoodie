@@ -125,7 +125,16 @@ Check other examples at test folder.
 
 # Download
 
-Get it from maven central
+You may need to add bintray repo
+
+    <repositories>
+        <repository>
+            <id>bintray</id>
+            <url>https://dl.bintray.com/burakdd/maven/</url>
+        </repository>
+    </repositories>
+
+Get it with maven
 
     <dependency>
         <groupId>com.burakdede</groupId>
