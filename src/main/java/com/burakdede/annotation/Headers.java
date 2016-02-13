@@ -13,25 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.burakdede.annotation;
+
+import java.lang.annotation.*;
+
 /**
- * Created by burakdede on 28.10.15.
+ * Created by burakdede on 23.10.15.
  */
-public enum RequestType {
-
-    HEAD, GET, POST, DELETE, UNSUPPORTED;
-
-    public static RequestType findRequestType(String httpMethod) {
-        switch (httpMethod.toLowerCase()) {
-            case "get":
-                return GET;
-            case "post":
-                return POST;
-            case "delete":
-                return DELETE;
-            case "head":
-                return HEAD;
-            default:
-                return UNSUPPORTED;
-        }
-    }
+@Documented
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Headers {
+    Header[] value();
 }

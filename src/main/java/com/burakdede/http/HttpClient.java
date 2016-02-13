@@ -13,17 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package annotation;
+package com.burakdede.http;
 
-import java.lang.annotation.*;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Response;
+import java.util.Map;
 
 /**
  * Created by burakdede on 18.10.15.
  */
-@Documented
-@Target(ElementType.METHOD)
-@Retention(RetentionPolicy.RUNTIME)
-@Repeatable(value = Headers.class)
-public @interface Header {
-    String value();
+public interface HttpClient {
+
+    Response head(Map<String, String> headers, String url);
+
+    <T> T get(Map<String, String> headers, Map<String, String> queryParams, String url, Class c);
+
+    <T> T post(Map<String, String> headers, Entity entity, String url, Class c);
+
+    <T> T delete(Map<String, String> headers, String url, Class c);
 }

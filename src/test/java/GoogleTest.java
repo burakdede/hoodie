@@ -1,3 +1,6 @@
+import com.burakdede.Hoodie;
+import com.burakdede.MethodMetadata;
+import com.burakdede.ReflectiveInvocationHandler;
 import org.junit.Test;
 
 import javax.ws.rs.core.Response;

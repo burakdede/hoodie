@@ -1,4 +1,4 @@
-/*
+package com.burakdede;/*
  * Copyright (C) Burak Dede.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import http.HttpClient;
-import http.JerseyClient;
+import com.burakdede.http.HttpClient;
+import com.burakdede.http.JerseyClient;
 import org.glassfish.jersey.client.ClientConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

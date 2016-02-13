@@ -1,7 +1,7 @@
-import annotation.Header;
-import annotation.PathParam;
-import annotation.QueryParam;
-import annotation.Request;
+import com.burakdede.annotation.Header;
+import com.burakdede.annotation.PathParam;
+import com.burakdede.annotation.QueryParam;
+import com.burakdede.annotation.Request;
 
 import javax.ws.rs.core.Response;
 

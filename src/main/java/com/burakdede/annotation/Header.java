@@ -13,16 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package annotation;
+package com.burakdede.annotation;
 
 import java.lang.annotation.*;
 
 /**
- * Created by burakdede on 15.10.15.
+ * Created by burakdede on 18.10.15.
  */
 @Documented
+@Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.PARAMETER)
-public @interface QueryParam {
+@Repeatable(value = Headers.class)
+public @interface Header {
     String value();
 }

@@ -1,4 +1,4 @@
-import annotation.*;
+import com.burakdede.annotation.*;
 
 import javax.ws.rs.core.Response;
 

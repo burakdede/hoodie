@@ -1,4 +1,4 @@
-import annotation.Request;
+import com.burakdede.annotation.Request;
 
 import javax.ws.rs.core.Response;
 

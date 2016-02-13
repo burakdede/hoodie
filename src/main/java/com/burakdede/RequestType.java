@@ -1,4 +1,4 @@
-/*
+package com.burakdede;/*
  * Copyright (C) Burak Dede.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,16 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package annotation;
-
-import java.lang.annotation.*;
-
 /**
- * Created by burakdede on 15.10.15.
+ * Created by burakdede on 28.10.15.
  */
-@Documented
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
-public @interface Request {
-    String value();
+public enum RequestType {
+
+    HEAD, GET, POST, DELETE, UNSUPPORTED;
+
+    public static RequestType findRequestType(String httpMethod) {
+        switch (httpMethod.toLowerCase()) {
+            case "get":
+                return GET;
+            case "post":
+                return POST;
+            case "delete":
+                return DELETE;
+            case "head":
+                return HEAD;
+            default:
+                return UNSUPPORTED;
+        }
+    }
 }
