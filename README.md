@@ -139,7 +139,7 @@ Get it with maven
     <dependency>
         <groupId>com.burakdede</groupId>
         <artifactId>hoodie</artifactId>
-        <version>0.0.2</version>
+        <version>0.0.3</version>
     </dependency>
 
 # License
