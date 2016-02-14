@@ -122,6 +122,7 @@ Check other examples at test folder.
 # Whats New
 
 * ability to configure jersey client via hoodie
+* change package related problem
 
 # Download
 
